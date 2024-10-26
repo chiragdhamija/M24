@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS  # Import CORS
+from flask_cors import CORS
 import ee
 import os
 from google.oauth2 import service_account
@@ -9,7 +9,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./ee-chiragdhamija0203-2a464e556
 
 # Initialize Flask app
 app = Flask(__name__)
-CORS(app) 
+CORS(app)
 
 # Function to initialize Google Earth Engine
 def initialize_earth_engine():
@@ -33,7 +33,7 @@ initialize_earth_engine()
 def google_earth_api():
     start_date = request.args.get('startDate')
     end_date = request.args.get('endDate')
-    
+
     # Parse dates from the request
     try:
         start_date = ee.Date(start_date)
@@ -44,6 +44,9 @@ def google_earth_api():
     # Create an ImageCollection from MODIS
     dataset = ee.ImageCollection('MODIS/061/MOD09GA') \
               .filter(ee.Filter.date(start_date, end_date))
+
+    # Define the region of interest as a rectangle
+    region = ee.Geometry.Rectangle([60, 5, 100, 35])  # Corrected to use (minLon, minLat, maxLon, maxLat)
 
     # Select the true color bands
     trueColor = dataset.select(['sur_refl_b01', 'sur_refl_b04', 'sur_refl_b03'])
@@ -62,7 +65,7 @@ def google_earth_api():
 
     # Loop through each date in the range
     for date in date_list:
-        image = trueColor.filterDate(ee.Date(date)).mean()  # Get the mean image for the day
+        image = trueColor.filterDate(ee.Date(date)).mean().clip(region)  # Get the mean image for the day and clip it to the region
         if image.bandNames().size().getInfo() == 0:  # Check if the image has any bands
             continue  # Skip if there are no bands
 
@@ -70,7 +73,6 @@ def google_earth_api():
         image_urls.append(url)
 
     return jsonify({'images': image_urls})
-
 
 if __name__ == '__main__':
     app.run(debug=True)
