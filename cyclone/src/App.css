@@ -1,0 +1,89 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f8ff;  /* Light background */
+  margin: 0;
+  padding: 20px;
+  color: #333;  /* Dark text for contrast */
+}
+
+h1 {
+  text-align: center;
+  color: #007bff;  /* Primary color for headings */
+  margin-bottom: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;  /* More rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);  /* Deeper shadow for elevation */
+}
+
+.date-pickerclass {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.date-picker label {
+  flex: 1;
+  margin-right: 10px;
+  font-weight: bold;  /* Bold labels for better readability */
+}
+
+.date-picker label:last-child {
+  margin-right: 0;
+}
+
+.date-picker .react-datepicker-wrapper {
+  width: 100%;
+}
+
+.button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;  /* Rounded corners */
+  cursor: pointer;
+  font-size: 18px;  /* Larger font size for the button */
+  transition: background-color 0.3s, transform 0.2s;  /* Smooth transitions */
+  display: block;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);  /* Subtle lift on hover */
+}
+
+.image-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.image-grid img {
+  width: 220px;  /* Slightly larger images */
+  height: auto;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;  /* Add hover effect on images */
+}
+
+.image-grid img:hover {
+  transform: scale(1.05);  /* Slightly enlarge on hover */
+}
+
+@media (max-width: 600px) {
+  .date-picker {
+    flex-direction: column;
+  }
+
+  .date-picker label {
+    margin-bottom: 10px;
+  }
+}
