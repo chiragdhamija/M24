@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import ee
 import os
+import requests
 from google.oauth2 import service_account
 
 # Set the path to your service account JSON key file
@@ -56,6 +57,8 @@ def google_earth_api():
     if image_count == 0:
         return jsonify({'error': 'No images available for the specified date range.'}), 404
 
+    save_dir = 'images'
+    os.makedirs(save_dir, exist_ok=True)
     # Generate image URLs for each day in the range
     image_urls = []
     date_range = ee.DateRange(start_date, end_date)
@@ -71,6 +74,11 @@ def google_earth_api():
 
         url = image.getThumbUrl({'min': -100.0, 'max': 8000.0, 'dimensions': '512x512'})
         image_urls.append(url)
+        response = requests.get(url)
+        if response.status_code == 200:
+            filename = f"{save_dir}/image_{ee.Date(date).format('YYYYMMdd').getInfo()}.png"
+            with open(filename, 'wb') as f:
+                f.write(response.content)
 
     return jsonify({'images': image_urls})
 
