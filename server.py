@@ -4,6 +4,7 @@ import ee
 import os
 import requests
 from google.oauth2 import service_account
+from predict import main
 
 # Set the path to your service account JSON key file
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./ee-chiragdhamija0203-2a464e556b15.json"
@@ -81,6 +82,11 @@ def google_earth_api():
                 f.write(response.content)
 
     return jsonify({'images': image_urls})
+
+@app.route('/alert-data', methods=['GET'])
+def alert_data():
+    return main()
+
 
 if __name__ == '__main__':
     app.run(debug=True)

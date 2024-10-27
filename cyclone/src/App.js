@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 import ImageSlideshow from './ImageComparisonSlider';
-
+import AlertComponent from './AlertComponent';
 const App = () => {
   const [images, setImages] = useState([]);
+  const [alert, setAlert] = useState([]);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [currentDate, setCurrentDate] = useState('');
@@ -46,7 +47,7 @@ const App = () => {
       <div className="header-container">
         <div className="title-container">
           <h1 className="main-title">CRAPS</h1>
-          <h2 className="subtitle">Cyclone Rapid Predictor System</h2>
+          <h2 className="subtitle">Cyclone Rapid Advance Predictor System</h2>
         </div>
         <div className="wave"></div>
       </div>
@@ -64,7 +65,7 @@ const App = () => {
             Fetch Satellite Images
           </button>
         </div>
-
+        <AlertComponent/>
         {images.length > 0 && (
           <div className="mt-8">
             <h2 className="text-2xl font-semibold text-center mb-4">Satellite Images</h2>
