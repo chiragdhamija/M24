@@ -72,7 +72,7 @@ const App = () => {
 
           <button
             onClick={fetchImages}
-            className="bg-gradient-to-r from-blue-600 to-blue-500 text-white py-3 px-4 rounded-lg hover:from-blue-700 hover:to-blue-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+            className="button"
           >
             Fetch Satellite Images
           </button>
