@@ -7,7 +7,7 @@ from google.oauth2 import service_account
 from predict import main
 
 # Set the path to your service account JSON key file
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./ee-chiragdhamija0203-2a464e556b15.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./ee-chiragdhamija0203-94cc9a5ed9f3.json"
 
 # Initialize Flask app
 app = Flask(__name__)
