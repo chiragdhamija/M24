@@ -1,20 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import './App.css';
 import ImageSlideshow from './ImageComparisonSlider';
 
 const App = () => {
+  const [images, setImages] = useState([]);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [images, setImages] = useState([]);
+  const [currentDate, setCurrentDate] = useState('');
+
+  // Calculate the start and end dates
+  useEffect(() => {
+    const today = new Date();
+    const tenDaysAgo = new Date(today);
+    tenDaysAgo.setDate(today.getDate() - 10);
+
+    setStartDate(tenDaysAgo);
+    setEndDate(today);
+    setCurrentDate(today.toISOString().split("T")[0]); // Format current date
+  }, []);
 
   const fetchImages = async () => {
     if (!startDate || !endDate) {
-      alert("Please select both start and end dates.");
+      alert("Date calculation error. Please try again.");
       return;
     }
+
     try {
       const response = await axios.get('http://localhost:5000/google-earth-api', {
         params: {
@@ -42,34 +53,8 @@ const App = () => {
 
       <div className="container mx-auto px-4">
         <div className="max-w-md mx-auto mb-8 flex flex-col gap-4 bg-white p-6 rounded-lg shadow-lg">
-          <div className="flex flex-col gap-2">
-            <label className="font-medium">
-              Start Date:
-              <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-                dateFormat="yyyy-MM-dd"
-                isClearable
-                placeholderText="Select a start date"
-                className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              />
-            </label>
-          </div>
-          
-          <div className="flex flex-col gap-2">
-            <label className="font-medium">
-              End Date:
-              <DatePicker
-                selected={endDate}
-                onChange={(date) => setEndDate(date)}
-                dateFormat="yyyy-MM-dd"
-                isClearable
-                placeholderText="Select an end date"
-                className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              />
-            </label>
-          </div>
-
+          {/* Display current date */}
+          <p className="text-center text-lg font-semibold">Current Date: {currentDate}</p>
           <button
             onClick={fetchImages}
             className="button"
