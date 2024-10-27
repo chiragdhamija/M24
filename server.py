@@ -76,7 +76,7 @@ def google_earth_api():
         image_urls.append(url)
         response = requests.get(url)
         if response.status_code == 200:
-            filename = f"{save_dir}/image_{ee.Date(date).format('YYYYMMdd').getInfo()}.png"
+            filename = f"{save_dir}/{ee.Date(date).format('dd-MM-yy').getInfo()}.png"
             with open(filename, 'wb') as f:
                 f.write(response.content)
 
