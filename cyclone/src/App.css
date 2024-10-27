@@ -1,89 +1,262 @@
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f0f8ff;  /* Light background */
-  margin: 0;
-  padding: 20px;
-  color: #333;  /* Dark text for contrast */
+/* App.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Add these styles to your App.css */
+.header-container {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  padding: 2rem 0;
+  overflow: hidden;
 }
 
-h1 {
-  text-align: center;
-  color: #007bff;  /* Primary color for headings */
-  margin-bottom: 20px;
+.header-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
+  transform: skewY(-3deg);
+  transform-origin: top left;
+  z-index: -1;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.main-title {
+  font-size: 4.5rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(to right, #ffffff, #e2e8f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #e2e8f0;
+  letter-spacing: 0.05em;
+  animation: fadeIn 1s ease-out;
+}
+
+.wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: white;
+  clip-path: polygon(
+    0% 100%,
+    0% 0%,
+    25% 30%,
+    50% 0%,
+    75% 30%,
+    100% 0%,
+    100% 100%
+  );
+}
+
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 3rem;
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+:root {
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+  --gradient-start: #3b82f6;
+  --gradient-end: #1d4ed8;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --background: #f9fafb;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--background);
+  color: var(--text-primary);
+  line-height: 1.5;
 }
 
 .container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Header Styles */
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 2rem;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+/* Date Picker Container */
+.date-picker-container {
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  padding: 2rem;
   background: white;
-  padding: 30px;
-  border-radius: 12px;  /* More rounded corners */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);  /* Deeper shadow for elevation */
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  animation: fadeIn 0.8s ease-out;
 }
 
-.date-pickerclass {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.date-picker label {
-  flex: 1;
-  margin-right: 10px;
-  font-weight: bold;  /* Bold labels for better readability */
-}
-
-.date-picker label:last-child {
-  margin-right: 0;
-}
-
-.date-picker .react-datepicker-wrapper {
+/* Date Picker Styles */
+.react-datepicker-wrapper {
   width: 100%;
 }
 
+.react-datepicker__input-container input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.react-datepicker__input-container input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Button Styles */
 .button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;  /* Rounded corners */
-  cursor: pointer;
-  font-size: 18px;  /* Larger font size for the button */
-  transition: background-color 0.3s, transform 0.2s;  /* Smooth transitions */
   display: block;
   width: 100%;
+  padding: 1rem 2rem;
+  background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
 }
 
 .button:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);  /* Subtle lift on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
 }
 
-.image-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.button:active {
+  transform: translateY(0);
 }
 
-.image-grid img {
-  width: 220px;  /* Slightly larger images */
-  height: auto;
-  margin: 10px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s;  /* Add hover effect on images */
+/* Footer Styles */
+footer {
+  margin-top: 4rem;
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-secondary);
+  border-top: 1px solid #e5e7eb;
 }
 
-.image-grid img:hover {
-  transform: scale(1.05);  /* Slightly enlarge on hover */
-}
-
-@media (max-width: 600px) {
-  .date-picker {
-    flex-direction: column;
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-  .date-picker label {
-    margin-bottom: 10px;
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .button {
+    padding: 0.875rem 1.5rem;
+  }
+}
+
+/* Loading State */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.loading::after {
+  content: '';
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e5e7eb;
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }
