@@ -10,7 +10,7 @@
   
   .slideshow-image-container {
     position: relative;
-    height: 500px;
+    height: auto;
     background: #f3f4f6;
     overflow: hidden;
   }

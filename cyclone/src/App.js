@@ -54,7 +54,9 @@ const App = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-md mx-auto mb-8 flex flex-col gap-4 bg-white p-6 rounded-lg shadow-lg">
           {/* Display current date */}
-          <p className="text-center text-lg font-semibold">Current Date: {currentDate}</p>
+          <div class="center-container">
+              <div class="date">October 27, 2024</div>
+          </div>
           <button
             onClick={fetchImages}
             className="button"

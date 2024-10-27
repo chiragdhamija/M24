@@ -189,6 +189,22 @@ h1 {
 .button:active {
   transform: translateY(0);
 }
+.date {
+  font-size: 0.9rem;      /* Slightly smaller than the default font size */
+  color: #6c757d;         /* A neutral, muted gray */
+  font-style: italic;     /* Subtle emphasis */
+  margin-bottom: 10px;    /* Adds some spacing */
+  text-align: center;      /* Aligns the date to the right */
+  padding: 5px;           /* Adds a small amount of padding */
+  border-radius: 4px;     /* Rounds the corners */
+  background-color: #f8f9fa; /* Light background to make it visible */
+  display: inline-block;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;    /* Horizontally center the content */
+}
 
 /* Footer Styles */
 footer {
