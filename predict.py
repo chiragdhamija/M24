@@ -30,9 +30,9 @@ def check_increased_cloud_coverage(folder_path, threshold_factor=1.5):
     
     # Return 1 if the last 2 images have much greater cloud coverage than the rest, 0 otherwise
     if last_2_average > threshold_factor * average_cloud_cover:
-        return 1
+        return "1"
     else:
-        return 0
+        return "0"
 
 # Example usage:
 folder_path = "images"  # Path to the folder containing the 15 images

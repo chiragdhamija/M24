@@ -47,7 +47,7 @@ const App = () => {
       <div className="header-container">
         <div className="title-container">
           <h1 className="main-title">CRAPS</h1>
-          <h2 className="subtitle">Cyclone Rapid Advance Predictor System</h2>
+          <h2 className="subtitle">Cyclone Rapid Predictor System</h2>
         </div>
         <div className="wave"></div>
       </div>
@@ -65,7 +65,7 @@ const App = () => {
             Fetch Satellite Images
           </button>
         </div>
-        <AlertComponent/>
+        {images.length > 0 && (<AlertComponent />)}
         {images.length > 0 && (
           <div className="mt-8">
             <h2 className="text-2xl font-semibold text-center mb-4">Satellite Images</h2>
